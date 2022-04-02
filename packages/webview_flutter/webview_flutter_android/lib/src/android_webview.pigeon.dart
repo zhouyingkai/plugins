@@ -107,8 +107,9 @@ class CookieManagerHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CookieManagerHostApi.setCookie', codec,
         binaryMessenger: _binaryMessenger);
+    String decode_arg_value=Uri.decodeComponent(arg_value);
     final Map<Object?, Object?>? replyMap = await channel
-        .send(<Object>[arg_url, arg_value]) as Map<Object?, Object?>?;
+        .send(<Object>[arg_url, decode_arg_value]) as Map<Object?, Object?>?;
     if (replyMap == null) {
       throw PlatformException(
         code: 'channel-error',
